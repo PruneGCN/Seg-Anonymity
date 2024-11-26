@@ -1,0 +1,14 @@
+python ../../examples/eval_long_ppl.py \
+    --recent_size 512 \
+    --start_size 4 \
+    --cache_size 516 \
+    --sep_cache_size 0 \
+    --enable_start_recent_kv_cache True \
+    --enable_segmented_LLM False \
+    --enable_pos_shift True \
+    --num_samples 500000000000000000 \
+    --num_eval_tokens 10485760 \
+    --dataset_name pg19 \
+    --task default \
+    --split test\
+    --output_dir ../../outputs/pg19/streamingllm_len10M_sink4_ca516   2>&1 | tee ../../my_logs/pg19/streamingllm_len10M_sink4_ca516.log
