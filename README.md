@@ -176,7 +176,7 @@ node2_ip slots=8
 : pdsh is the default launcher, and if you're using pdsh then all you must do (besides ensuring that pdsh is installed in your environment) is set {"launcher": "pdsh"} in your config files.
 
 **MPI**
-: "If using MPI then you must specify the MPI library (DeepSpeed tool and GPTNeoX architecture currently support mvapich, openmpi, mpich, and impi, though openmpi is the most commonly used and tested) as well as pass the deepspeed_mpi flag in your config file:
+: If using MPI then you must specify the MPI library (DeepSpeed tool and GPTNeoX architecture currently support mvapich, openmpi, mpich, and impi, though openmpi is the most commonly used and tested) as well as pass the deepspeed_mpi flag in your config file:
 ```
 {
     "launcher": "openmpi",
@@ -184,7 +184,7 @@ node2_ip slots=8
 }
 ```
 **Slurm**
-: "Using Slurm can be slightly more involved. Like with MPI, you must add the following to your config:
+: Using Slurm can be slightly more involved. Like with MPI, you must add the following to your config:
 ```
 {
     "launcher": "slurm",
