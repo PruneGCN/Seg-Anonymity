@@ -100,27 +100,17 @@ class SegmentMaskArgs(NeoXArgsTemplate):
     """
 
 
-    ######################################There should be at most 1 True for the following 4 args ##############################################
+    ######################################There should be at most 1 True for the following 2 args ##############################################
     original_flag: bool = False  
     """
     Run the model without any modification if True
     """
 
-    streamingLLM: bool = False  ## NOT implemented yet
+    streamingLLM: bool = False  
     """
     Run streamingLLM. Only takes effect when original_flag=False. 
     """
-    
-    random_special_tokens_uniform: bool = False  ## NOT implemented yet
-    """
-    Keep random selected tokens to replace seps. Select one other token between two seps
-    """
-
-    random_special_tokens_general: bool = False  ## NOT implemented yet
-    """
-    Keep random selected tokens to replace seps. Randomly choose tokens generally
-    """
-    ######################################There should be at most 1 True for the above 4 args ##############################################
+    ######################################There should be at most 1 True for the above 2 args ##############################################
     
 
     BATCH_DYNAMIC_ATT_SINK: bool = False 
@@ -145,11 +135,6 @@ class SegmentMaskArgs(NeoXArgsTemplate):
     USE_FLEX: bool = False 
     """
     If True, use Flex-attention. MUST be set True if you want to use Seg-Attention module to accelerate training.
-    """
-    
-    NOT_AVOID_SEP: bool = False  ## NOT implemented yet    
-    """
-    False by default. Only take effects when random_special_tokens_general = True. When NOT_AVOID_SEP=True, it is possible to randomly select another sep to replace a sep.        
     """
 
     EXCLUDE_DIAGONAL: bool = True ## From old version: Deprecated
