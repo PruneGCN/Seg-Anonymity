@@ -19,7 +19,7 @@ cd Training-SegLLM
 pip install -r requirements/requirements.txt
 python ./megatron/fused_kernels/setup.py install # optional if not using fused kernels
 ```
-*Note: If you want to use the Seg-Attention module, please make sure your Pytorch>=2.5.0. And set "USE_FLEX=True" in your training config file.*
+*Note: If you want to use the **Seg-Attention module** (which relies on [FlexAttention](https://pytorch.org/blog/flexattention/) and [Triton](https://github.com/triton-lang/triton)), please make sure your **Pytorch>=2.5.0**. And set "USE_FLEX=True" in your training config file.*
 
 You can start training by:
 ```
@@ -161,6 +161,42 @@ After the training is completed, we can convert the training checkpoints to the 
 ```
 python ./tools/ckpts/convert_neox_to_hf.py --input_dir path/to/checkpoints/global_stepXXX --config_file your_config.yml --output_dir hf_model/save/dir
 ```
+
+## Multi-Node Distributed Training
+We support training on multiple different nodes and you have the option of using a variety of different launchers to orchestrate multi-node jobs. This relies on [DeepSpeed](https://github.com/microsoft/DeepSpeed)
+
+In general there needs to be a "hostfile" somewhere accessible, and you can set it in the config yml file:
+```
+node1_ip slots=8
+node2_ip slots=8
+```
+
+
+**pdsh**
+: pdsh is the default launcher, and if you're using pdsh then all you must do (besides ensuring that pdsh is installed in your environment) is set {"launcher": "pdsh"} in your config files.
+
+**MPI**
+: "If using MPI then you must specify the MPI library (DeepSpeed tool and GPTNeoX architecture currently support mvapich, openmpi, mpich, and impi, though openmpi is the most commonly used and tested) as well as pass the deepspeed_mpi flag in your config file:
+```
+{
+    "launcher": "openmpi",
+    "deepspeed_mpi": true
+}
+```
+**Slurm**
+: "Using Slurm can be slightly more involved. Like with MPI, you must add the following to your config:
+```
+{
+    "launcher": "slurm",
+    "deepspeed_slurm": true
+}
+```
+If you do not have ssh access to the compute nodes in your Slurm cluster you need to add 
+```
+{"no_ssh_check": true}
+```
+in the config yml file.
+
 
 # Long Streaming Test
 Our long streaming evaluation is following [StreamingLLM](https://github.com/mit-han-lab/streaming-llm/).
