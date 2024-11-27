@@ -6,7 +6,7 @@ Large Language Models (LLMs) have exhibited exceptional performance across a spe
 
 # Usage
 
-You can install the required package in the requirements.txt. You are recommended to build a independent conda environment (or pyenv, etc.) to do this. Our code is based on the code framework [GPTNeoX](url=https://github.com/EleutherAI/gpt-neox).
+You can install the required package in the requirements.txt. You are recommended to build a independent conda environment (or pyenv, etc.) to do this. Our code is based on the code framework [GPTNeoX](https://github.com/EleutherAI/gpt-neox).
 
 ## For training
 
@@ -171,14 +171,14 @@ Remember to save your training process checkpoints, so that if the training is i
 ```
 
 
-After the training is completed, we can convert the training checkpoints to the Hugging Face format, so that we can test them on downstream tasks （e.g. using [lm_eval](url=https://github.com/EleutherAI/lm-evaluation-harness)）.
+After the training is completed, we can convert the training checkpoints to the Hugging Face format, so that we can test them on downstream tasks （e.g. using [lm_eval](https://github.com/EleutherAI/lm-evaluation-harness)）.
 
 ```
 python ./tools/ckpts/convert_neox_to_hf.py --input_dir path/to/checkpoints/global_stepXXX --config_file your_config.yml --output_dir hf_model/save/dir
 ```
 
 # Long Streaming Test
-Our long streaming evaluation is following [StreamingLLM](url=https://github.com/mit-han-lab/streaming-llm/).
+Our long streaming evaluation is following [StreamingLLM](https://github.com/mit-han-lab/streaming-llm/).
 
 ## Usage
 
