@@ -12,8 +12,6 @@ import time
 device = "cuda:0"
 
 args = parse_args()
-if args.dataset_name.lower() == 'pg19':
-    args.dataset_name = '/lustre/fast/fast/txiao/shihan/pg19/deepmind-gutenberg/deepmind-gutenberg'
 data = load_dataset(args.dataset_name, args.task, split=args.split)
 # data = load_dataset('PG19', split='test')
 
